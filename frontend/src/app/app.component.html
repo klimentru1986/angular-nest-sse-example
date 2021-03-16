@@ -1,0 +1,12 @@
+<input placeholder="userName" [(ngModel)]="userName" required />
+<br /><br />
+<textarea placeholder="text" [(ngModel)]="text" required></textarea>
+<br /><br />
+<button (click)="addMessage()">add</button>
+<br /><br />
+<hr />
+<div *ngFor="let m of messages">
+  <div><b>{{m.userName}}</b></div>
+  <div>{{m.text}}</div>
+  <br />
+</div>
