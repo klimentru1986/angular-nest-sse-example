@@ -9,7 +9,7 @@ import { MessageDto } from './message.dto';
 
 @Injectable()
 export class MessageService {
-    private readonly stream: ChangeStream<MessageDocument>;
+    private readonly stream: ChangeStream<Message>;
 
     constructor(@InjectModel(Message.name) private messageModel: Model<MessageDocument>) { 
         this.stream = messageModel.watch();
@@ -29,7 +29,7 @@ export class MessageService {
     sseConnect(): Observable<MessageEvent> {
 
         return new Observable(handler => {
-            this.stream.on('change', (res: ChangeEventCR<MessageDocument>) => {
+            this.stream.on('change', (res: ChangeEventCR<Message>) => {
                 console.log('change', res)
                 handler.next({data: res.fullDocument})
             });
